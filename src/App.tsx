@@ -10,7 +10,6 @@ const Root = defineComponent({
         const dialog = useAlertDialog();
 
         await fb.loadCookies();
-        await fb.loadMetaData();
 
         if (!fb.isLogin.value) {
             dialog.alert("Anda belum login ke Facebook. silahkan login terlebih dahulu.").then(() => {
@@ -20,6 +19,14 @@ const Root = defineComponent({
                     });
                 })
             });
+
+            return () => null
+        }
+
+        await fb.loadMetaData();
+
+        if (!fb.metaData.value.account) {
+            dialog.alert("Tidak dapat memuat meta data.").then(() => window.location.reload());
             return () => null
         } else {
             return () => (

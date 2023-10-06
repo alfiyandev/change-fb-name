@@ -28,6 +28,10 @@ export default createGlobalState<() => UseFacebookReturn>((): UseFacebookReturn 
 
     async function loadMetaData(): Promise<void> {
         metaData.value = await new Promise(resolve => {
+            if (!isLogin.value) {
+                return resolve({})
+            }
+
             axios.get(`https://accountscenter.facebook.com/profiles/${id.value}/name`).then(response => {
                 const parser = new DOMParser();
                 const dom = parser.parseFromString(response.data, "text/html");
@@ -104,7 +108,7 @@ export default createGlobalState<() => UseFacebookReturn>((): UseFacebookReturn 
                 }
 
                 resolve(result);
-            })
+            }).catch(() => resolve({}))
         })
     }
 
