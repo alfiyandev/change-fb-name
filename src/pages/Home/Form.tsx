@@ -108,7 +108,7 @@ export default defineComponent({
                                 full_name: fullname.value,
                                 first_name: fb.metaData.value.changeNameDefaultValue.firstName,
                                 middle_name: fb.metaData.value.changeNameDefaultValue.middleName,
-                                lastname: fb.metaData.value.changeNameDefaultValue.lastName
+                                last_name: fb.metaData.value.changeNameDefaultValue.lastName
                                 // last_name: (
                                 //     fb.metaData.value.canChangeName && (fb.metaData.value.changeNameDefaultValue.fullName.trim().split(" ").length == 1
                                 //         || fb.metaData.value.changeNameDefaultValue.fullName.trim().split(" ").pop() !== fb.metaData.value.changeNameDefaultValue.lastName.trim()
