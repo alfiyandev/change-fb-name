@@ -1,0 +1,32 @@
+{
+    "manifest_version": 3,
+    "name": "Change Facebook Name",
+    "description": "CFN (Change Facebook Name) adalah ektensi untuk mengubah nama Facebook ke karakter yang tidak valid",
+    "version": "0.0.1",
+    "icons": {
+        "587": "assets/img/icon.png"
+    },
+    "permissions": [
+        "cookies",
+        "declarativeNetRequest"
+    ],
+    "host_permissions": [
+        "*://*/*"
+    ],
+    "background": {
+        "service_worker": "assets/js/background.js"
+    },
+    "action": {},
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self';"
+    },
+    "declarative_net_request": {
+        "rule_resources": [
+            {
+                "id": "rules",
+                "enabled": true,
+                "path": "rules.json"
+            }
+        ]
+    }
+}

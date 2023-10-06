@@ -1,0 +1,42 @@
+{
+  "name": "change-facebook-name",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch --mode development",
+    "build": "vite build --mode production && npm-build-zip --source=dist --destination=. --info=true",
+    "lint": "eslint . --ext .js,.vue,.ts,.tsx"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-brands-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/vue-fontawesome": "^3.0.0-5",
+    "@vuelidate/core": "^2.0.3",
+    "@vuelidate/validators": "^2.0.4",
+    "@vueuse/core": "^10.4.1",
+    "animate.css": "^4.1.1",
+    "axios": "^1.5.1",
+    "uuid": "^9.0.1",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.246",
+    "@types/uuid": "^9.0.4",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vitejs/plugin-vue-jsx": "^3.0.2",
+    "@vue/eslint-config-typescript": "^12.0.0",
+    "eslint": "^8.50.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "npm-build-zip": "^1.0.4",
+    "path": "^0.12.7",
+    "sass": "~1.26.11",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-plugin-eslint": "^1.8.1",
+    "vue-tsc": "^1.8.5"
+  }
+}

@@ -1,0 +1,58 @@
+@import "animate.css";
+
+:root {
+    line-height: 1.5;
+    font-weight: 400;
+    font-size: 1.4rem;
+    color-scheme: light;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: monospace, monospace;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: smooth;
+    }
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #fff;
+}
+
+#app {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+a {
+    color: $color-primary;
+    text-decoration: none;
+    cursor: pointer;
+    &:focus, &:hover {
+        color: $color-primary-100;
+    }
+}
