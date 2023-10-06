@@ -220,7 +220,7 @@ export default defineComponent({
                     )}
                     <button
                         class={[styles.button, styles.w_100]}
-                        disabled={v$.value.$error || isLoading.value || fb.metaData.value.account.name.trim().toLocaleLowerCase() == fullname.value.trim().toLocaleLowerCase()}
+                        disabled={v$.value.$error || isLoading.value || fb.metaData.value.account.name.trim().toLowerCase() == fullname.value.trim().toLowerCase()}
                         onClick={changeName}
                     >
                         {isLoading.value ? (
