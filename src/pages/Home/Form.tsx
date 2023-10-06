@@ -21,12 +21,16 @@ export default defineComponent({
         const dialog = useAlertDialog();
         const v$ = useVuelidate({firstname: { required }}, { firstname });
 
-        const fullname = computed(() => {
+        const fullname = computed<string>(() => {
             return [firstname.value, midname.value, lastname.value]
                 .filter(n => typeof n == "string" && n.trim() !== "")
                 .map(n => n.trim())
                 .join(" ")
                 .trim()
+        });
+
+        const hasWithoutLimitFitures = computed<boolean>(() => {
+            return fb.metaData.value.canChangeName && fb.metaData.value.account.name.trim().split(" ") > 1
         });
 
         async function changeName() {
@@ -206,7 +210,7 @@ export default defineComponent({
                         />
                     </div>
                     {/* anti limit hanya bekerja dengan fb yang mempunyai nama lebih dari satu kata */}
-                    {fb.metaData.value.canChangeName && fb.metaData.value.account.name.trim().split(" ").length > 1 && (
+                    {hasWithoutLimitFitures.value && (
                         <div class={styles.form_control}>
                             <input
                                 type="checkbox"
@@ -215,7 +219,15 @@ export default defineComponent({
                                 id="bypass-limit"
                             />
                             <label class={styles.form_control_label} for="bypass-limit">Anti Limit</label>
-                            <small>Memungkinankan anda mengubah nama tanpa terkena limit 60 hari</small>
+                            <small class={[styles.d_block]}>Memungkinankan anda mengubah nama tanpa terkena limit 60 hari</small>
+                            <small class={[styles.text_danger, styles.d_block]}>
+                                Jika menyentang bagian ini mungkin disebagian nama yang sebenarnya valid akan diangkap tidak valid.
+                                Jika ada pesan kesalahan <strong>IG_NAME_VALIDATION_FAILED</strong> tapi kamu yakin nama yang kamu pakai valid coba jangan centang bagian ini.
+                                Dengan menyentang bagian ini nama di <strong>Tentang Profile</strong> tidak akan berubah.
+                            </small>
+                            <small class={[styles.text_danger, styles.d_block]}>
+                                
+                            </small>
                         </div>
                     )}
                     <button

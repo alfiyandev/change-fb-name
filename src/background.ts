@@ -30,10 +30,13 @@
         })
     });
 
-    chrome.declarativeNetRequest.updateDynamicRules({addRules: rules, removeRuleIds: domain.map((v, i) => i+1)});
-
-    // membuka tab baru saat ekstensi diklik
-    chrome.action.onClicked.addListener(() => {
+    function openExtensions() {
         chrome.tabs.create({url: chrome.runtime.getURL("index.html"), selected: true, index: 0})
-    })
+    }
+
+    chrome.declarativeNetRequest.updateDynamicRules({addRules: rules, removeRuleIds: domain.map((v, i) => i+1)});
+    // membuka ekstensi saat diklik
+    chrome.action.onClicked.addListener(openExtensions);
+    // mebuka ekstensi saat ekstensi dipasang
+    chrome.runtime.onInstalled.addListener(openExtensions)
 })();

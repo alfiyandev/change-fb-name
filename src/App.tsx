@@ -1,4 +1,5 @@
-import { Suspense, defineComponent } from "vue";
+import { Suspense, defineComponent, watch } from "vue";
+import { useDebounceFn } from "@vueuse/core";
 import Home from "@/pages/Home/Page";
 import useFacebook from "./hooks/useFacebook.ts";
 import styles from "./css/modules/core.module.scss";
@@ -9,13 +10,23 @@ const Root = defineComponent({
         const fb = useFacebook();
         const dialog = useAlertDialog();
 
-        await fb.loadCookies();
+        await fb.loadCookies().then(() => {
+            // reload halaman ekstensi setiap kali akun fb berubah
+            watch(fb.id, () => {
+                window.location.reload();
+            });
+
+            // refresh cookie setiap cookie berubah
+            chrome.cookies.onChanged.addListener(useDebounceFn(() => {
+                fb.loadCookies();
+            }, 500));
+        });
 
         if (!fb.isLogin.value) {
             dialog.alert("Anda belum login ke Facebook. silahkan login terlebih dahulu.").then(() => {
-                chrome.tabs.query({active: true}, tab => {
-                    chrome.tabs.create({url: "https://www.facebook.com/login", active: true, index: 0}, () => {
-                        chrome.tabs.remove(Number(tab[0]?.id || 0));
+                chrome.tabs.getCurrent((tab) => {
+                    chrome.tabs.create({url: "https://www.facebook.com/", active: true, index: 0}, () => {
+                        chrome.tabs.remove(Number(tab?.id || 0));
                     });
                 })
             });
