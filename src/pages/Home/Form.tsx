@@ -22,11 +22,16 @@ export default defineComponent({
         const v$ = useVuelidate({firstname: { required }}, { firstname });
 
         const fullname = computed<string>(() => {
+            // return [firstname.value, midname.value, lastname.value]
+            //     .filter(n => typeof n == "string" && n.trim() !== "")
+            //     .map(n => n.trim())
+            //     .join(" ")
+            //     .trim()
+
+            // menghapus .trim() dari kode sebelumnya supaya mendukung font blank
             return [firstname.value, midname.value, lastname.value]
-                .filter(n => typeof n == "string" && n.trim() !== "")
-                .map(n => n.trim())
+                .filter(n => typeof n == "string" && n !== "")
                 .join(" ")
-                .trim()
         });
 
         const hasWithoutLimitFitures = computed<boolean>(() => {

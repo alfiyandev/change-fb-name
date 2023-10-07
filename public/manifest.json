@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Change Facebook Name",
     "description": "CFN (Change Facebook Name) adalah ektensi untuk mengubah nama Facebook ke karakter yang tidak valid",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "icons": {
         "587": "assets/img/icon.png"
     },
